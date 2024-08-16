@@ -1,26 +1,26 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
-const path = require("node:path");
-
-let mainWindow;
+const { app, BrowserWindow } = require("electron/main");
 
 const createWindow = () => {
-  mainWindow = new BrowserWindow({
+  const win = new BrowserWindow({
     width: 800,
     height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-      contextIsolation: false,
-      nodeIntegration: true,
-    },
   });
 
-  mainWindow.loadFile("index.html");
+  win.loadFile("index.html");
 };
 
 app.whenReady().then(() => {
   createWindow();
+
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
 });
 
-ipcMain.on("start-game", (event) => {
-  mainWindow.loadFile("game.html");
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
 });

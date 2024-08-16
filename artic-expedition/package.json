@@ -1,15 +1,19 @@
 {
   "name": "artic-expedition",
   "version": "1.0.0",
-  "description": "",
+  "description": "artic-expedition-game project",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ArcticExpedition"
   },
   "author": "seondy",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "electron": "^31.3.1"
+    "electron": "^31.4.0"
   }
 }
